@@ -1,0 +1,37 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+  "title": "GDP of each countries 2016 (based on current USD)",
+  "width": 800,
+  "height": 600,
+  "projection": {"type": "equirectangular"},
+  "data": {
+    "url": "https://raw.githubusercontent.com/KaneSec/vega_lite/main/3_choropleth_map/js/ne_110m_admin_0_countries.topojson",
+    "format": {"type": "topojson", "feature": "ne_110m_admin_0_countries"}
+  },
+  "transform": [
+    {
+      "lookup": "properties.BRK_A3",
+      "from": {
+        "data": {
+          "url": "https://raw.githubusercontent.com/sozonokishi/dataset/main/gdp_csv_2016.csv"
+        },
+        "key": "Country Code",
+        "fields": ["Value"]
+      }
+    },
+    {"calculate": "datum.Value", "as": "GDP Value"}
+  ],
+  "mark": {"type": "geoshape"},
+  "encoding": {
+    "color": {
+      "field": "GDP Value",
+      "type": "quantitative",
+      "scale": {"type": "log"}
+    },
+    "tooltip": [
+      {"field": "properties.NAME", "type": "nominal", "title": "Country"},
+      {"field": "GDP Value", "type": "quantitative"}
+    ]
+  },
+  "config": {}
+}
