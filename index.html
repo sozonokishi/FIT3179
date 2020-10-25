@@ -10,6 +10,7 @@
 <body>
 
 <div id="vis"></div>
+<div id="vis2"></div>
 
 <script type="text/javascript">
   var spec = "https://raw.githubusercontent.com/sozonokishi/FIT3179/main/visualization.vl.json";
@@ -17,5 +18,13 @@
     // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
   }).catch(console.error);
 </script>
+  
+<script type="text/javascript">
+  var spec = "https://raw.githubusercontent.com/sozonokishi/FIT3179/main/visualization2.vl.json";
+  vegaEmbed('#vis2', spec).then(function(result) {
+    // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+  }).catch(console.error);
+</script>
+  
 </body>
 </html>
