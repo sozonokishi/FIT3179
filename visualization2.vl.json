@@ -92,8 +92,8 @@
     },
     "tooltip": [
       {"field": "Country name", "type": "nominal"},
-      {"field": "Ladder_score", "type": "quantitative", "format": ","},
-      {"field": "Logged GDP per capita", "type": "quantitative", "format": ","}
+      {"field": "Ladder_score", "type": "quantitative"},
+      {"field": "Logged GDP per capita", "type": "quantitative"}
     ]
   }
 }
