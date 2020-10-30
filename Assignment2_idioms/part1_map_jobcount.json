@@ -1,0 +1,94 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+  "width": 800,
+  "height": 600,
+  "projection": {"type": "albersUsa"},
+  "data": {
+    "url": "https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json",
+    "format": {"type": "topojson", "feature": "states"}
+  },
+  "transform": [
+    {
+      "lookup": "properties.name",
+      "from": {
+        "data": {
+          "url": "https://raw.githubusercontent.com/sozonokishi/dataset/main/DataAnalystModified_map.csv"
+        },
+        "key": "State",
+        "fields": [
+          "Job Count",
+          "Low Salary Est Avg",
+          "High Salary Est Avg",
+          "Company Size Mode"
+        ]
+      }
+    }
+  ],
+  "layer": [
+    {
+      "mark": {
+        "type": "geoshape",
+        "color": "#F1F3C7",
+        "stroke": "white",
+        "opacity": 0.4
+      },
+      "encoding": {
+        "tooltip": [
+          {"field": "properties.name", "type": "nominal", "title": "State"},
+          {"field": "Job Count", "type": "quantitative", "title": "Job Count"},
+          {
+            "field": "Low Salary Est Avg",
+            "type": "quantitative",
+            "title": "Lowest Average Estimated Salary",
+            "format": ".0f"
+          },
+          {
+            "field": "High Salary Est Avg",
+            "type": "quantitative",
+            "title": "Highest Average Estimated Salary",
+            "format": ".0f"
+          },
+          {
+            "field": "Company Size Mode",
+            "type": "nominal",
+            "title": "Mode of Company Size"
+          }
+        ]
+      }
+    },
+    {
+      "mark": {"type": "geoshape", "stroke": "white"},
+      "encoding": {
+        "color": {
+          "field": "Job Count",
+          "type": "quantitative",
+          "scale": {
+            "domain": [0, 25, 50, 100, 200, 300, 500],
+            "scheme": "blues"
+          }
+        },
+        "tooltip": [
+          {"field": "properties.name", "type": "nominal", "title": "State"},
+          {"field": "Job Count", "type": "quantitative", "title": "Job Count"},
+          {
+            "field": "Low Salary Est Avg",
+            "type": "quantitative",
+            "title": "Lowest Average Estimated Salary",
+            "format": ".0f"
+          },
+          {
+            "field": "High Salary Est Avg",
+            "type": "quantitative",
+            "title": "Highest Average Estimated Salary",
+            "format": ".0f"
+          },
+          {
+            "field": "Company Size Mode",
+            "type": "nominal",
+            "title": "Mode of Company Size"
+          }
+        ]
+      }
+    }
+  ]
+}

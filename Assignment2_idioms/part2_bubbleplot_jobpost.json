@@ -1,0 +1,223 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+  "width": 800,
+  "height": 600,
+  "title": "Bubble Plot of Data Analyst Job Post on Glassdoor",
+  "data": {
+    "url": "https://raw.githubusercontent.com/sozonokishi/dataset/main/DataAnalystModified.csv",
+    "format": {
+      "type": "csv",
+      "parse": {"Low Salary Est": "number", "High Salary Est": "number"}
+    }
+  },
+  "params": [
+    {
+      "name": "Sector_selection",
+      "bind": {
+        "input": "select",
+        "options": [
+          null,
+          "Accounting & Legal",
+          "Aerospace & Defense",
+          "Arts, Entertainment & Recreation",
+          "Biotech & Pharmaceuticals",
+          "Business Services",
+          "Construction, Repair & Maintenance",
+          "Consumer Services",
+          "Education",
+          "Finance",
+          "Government",
+          "Health Care",
+          "Information Technology",
+          "Insurance",
+          "Manufacturing",
+          "Media",
+          "Mining & Metals",
+          "Non-Profit",
+          "Oil, Gas, Energy & Utilities",
+          "Others",
+          "Real Estate",
+          "Restaurants, Bars & Food Services",
+          "Retail",
+          "Telecommunications",
+          "Transportation & Logistics",
+          "Travel & Tourism"
+        ],
+        "labels": [
+          "Show All",
+          "Accounting & Legal",
+          "Aerospace & Defense",
+          "Arts, Entertainment & Recreation",
+          "Biotech & Pharmaceuticals",
+          "Business Services",
+          "Construction, Repair & Maintenance",
+          "Consumer Services",
+          "Education",
+          "Finance",
+          "Government",
+          "Health Care",
+          "Information Technology",
+          "Insurance",
+          "Manufacturing",
+          "Media",
+          "Mining & Metals",
+          "Non-Profit",
+          "Oil, Gas, Energy & Utilities",
+          "Others",
+          "Real Estate",
+          "Restaurants, Bars & Food Services",
+          "Retail",
+          "Telecommunications",
+          "Transportation & Logistics",
+          "Travel & Tourism"
+        ],
+        "name": "Sector Selection:"
+      }
+    }
+  ],
+  "transform": [
+    {"filter": "datum.Rating > 0"},
+    {"filter": "datum['Low Salary Est'] > 0"},
+    {"filter": "Sector_selection == null || datum.Sector == Sector_selection"},
+    {
+      "calculate": "(datum['Low Salary Est'] + datum['High Salary Est'])/2",
+      "as": "Average Salary Est"
+    }
+  ],
+  "encoding": {
+    "x": {
+      "field": "Rating",
+      "type": "quantitative",
+      "scale": {"domain": [0.5, 5.5]},
+      "axis": {"tickCount": 5}
+    },
+    "y": {
+      "type": "quantitative",
+      "scale": {"zero": false},
+      "axis": {"tickCount": 4},
+      "title": "Estimated Salary (By Glassdoor)"
+    },
+    "color": {
+      "field": "State",
+      "type": "nominal",
+      "scale": {
+        "range": [
+          "#00C0C7",
+          "#5144D3",
+          "#E8871A",
+          "#DA3490",
+          "#9089FA",
+          "#47E26F",
+          "#2780EB",
+          "#6F38B1",
+          "#268D6C",
+          "green"
+        ]
+      }
+    },
+    "shape": {
+      "field": "State",
+      "type": "nominal",
+      "legend": null,
+      "scale": {
+        "domain": [
+          "Arizona",
+          "California",
+          "Colorado",
+          "Delaware",
+          "Florida",
+          "Georgia",
+          "Illinois",
+          "Indiana",
+          "Kansas",
+          "New Jersey",
+          "New York",
+          "North Carolina",
+          "Ohio",
+          "Pennsylvania",
+          "South Carolina",
+          "Texas",
+          "Utah",
+          "Virginia",
+          "Washington"
+        ],
+        "range": [
+          "square",
+          "square",
+          "square",
+          "square",
+          "square",
+          "square",
+          "square",
+          "square",
+          "square",
+          "square",
+          "circle",
+          "circle",
+          "circle",
+          "circle",
+          "circle",
+          "circle",
+          "circle",
+          "circle",
+          "circle"
+        ]
+      }
+    }
+  },
+  "layer": [
+    {
+      "mark": "rule",
+      "selection": {
+        "state_selection": {
+          "type": "multi",
+          "fields": ["State"],
+          "bind": "legend",
+          "empty": "all"
+        },
+        "grid": {"type": "interval", "bind": "scales"}
+      },
+      "encoding": {
+        "y": {"field": "Low Salary Est"},
+        "y2": {"field": "High Salary Est"},
+        "opacity": {
+          "condition": {"selection": "state_selection", "value": 0.5},
+          "value": 0.03
+        }
+      }
+    },
+    {
+      "mark": "point",
+      "encoding": {
+        "y": {"field": "Average Salary Est"},
+        "size": {
+          "field": "Size",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "1 to 50 employees",
+              "51 to 200 employees",
+              "201 to 500 employees",
+              "501 to 1000 employees",
+              "1001 to 5000 employees",
+              "5001 to 10000 employees",
+              "10000+ employees"
+            ]
+          }
+        },
+        "opacity": {
+          "condition": {"selection": "state_selection", "value": 0.5},
+          "value": 0.01
+        },
+        "tooltip": [
+          {"field": "Job Title"},
+          {"field": "Company Name"},
+          {"field": "Salary Estimate"},
+          {"field": "Rating"},
+          {"field": "Size"},
+          {"field": "Sector"}
+        ]
+      }
+    }
+  ]
+}

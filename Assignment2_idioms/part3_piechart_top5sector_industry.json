@@ -1,0 +1,254 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v5.json",
+  "description": "A basic donut chart example.",
+  "width": 400,
+  "height": 400,
+  "autosize": "none",
+  "signals": [
+    {"name": "startAngle", "value": 0},
+    {"name": "endAngle", "value": 6.29},
+    {"name": "padAngle", "value": 0},
+    {"name": "innerRadius", "value": 90},
+    {"name": "cornerRadius", "value": 0},
+    {"name": "sort", "value": true},
+    {"name": "opacityValue", "value": 0.7}
+  ],
+  "data": [
+    {
+      "name": "table_OG",
+      "url": "https://raw.githubusercontent.com/sozonokishi/dataset/main/DataAnalystModified_TreeDonut.csv",
+      "format": {"type": "csv", "delimiter": ","}
+    },
+    {
+      "name": "table_modified",
+      "url": "https://raw.githubusercontent.com/sozonokishi/dataset/main/DataAnalystModified_TreeDonut.csv",
+      "format": {"type": "csv", "delimiter": ","},
+      "transform": [
+        {
+          "type": "aggregate",
+          "fields": ["Count"],
+          "ops": ["sum"],
+          "as": ["count_sum"],
+          "groupby": ["Sector"]
+        }
+      ]
+    },
+    {
+      "name": "table",
+      "url": "https://raw.githubusercontent.com/sozonokishi/dataset/main/DataAnalystModified_TreeDonut.csv",
+      "format": {"type": "csv", "delimiter": ","},
+      "transform": [
+        {"type": "filter", "expr": "datum.Sector == 'Information Technology'"},
+        {
+          "type": "pie",
+          "field": "Count",
+          "startAngle": {"signal": "startAngle + 6.29/5"},
+          "endAngle": {"signal": "endAngle + 6.29/5"},
+          "sort": {"signal": "sort"}
+        }
+      ]
+    },
+    {
+      "name": "table2",
+      "url": "https://raw.githubusercontent.com/sozonokishi/dataset/main/DataAnalystModified_TreeDonut.csv",
+      "format": {"type": "csv", "delimiter": ","},
+      "transform": [
+        {"type": "filter", "expr": "datum.Sector == 'Business Services'"},
+        {
+          "type": "pie",
+          "field": "Count",
+          "startAngle": {"signal": "startAngle + 6.29/5*2"},
+          "endAngle": {"signal": "endAngle + 6.29/5*2"},
+          "sort": {"signal": "sort"}
+        }
+      ]
+    },
+    {
+      "name": "table3",
+      "url": "https://raw.githubusercontent.com/sozonokishi/dataset/main/DataAnalystModified_TreeDonut.csv",
+      "format": {"type": "csv", "delimiter": ","},
+      "transform": [
+        {"type": "filter", "expr": "datum.Sector == 'Finance'"},
+        {
+          "type": "pie",
+          "field": "Count",
+          "startAngle": {"signal": "startAngle"},
+          "endAngle": {"signal": "endAngle"},
+          "sort": {"signal": "sort"}
+        }
+      ]
+    },
+    {
+      "name": "table4",
+      "url": "https://raw.githubusercontent.com/sozonokishi/dataset/main/DataAnalystModified_TreeDonut.csv",
+      "format": {"type": "csv", "delimiter": ","},
+      "transform": [
+        {"type": "filter", "expr": "datum.Sector == 'Health Care'"},
+        {
+          "type": "pie",
+          "field": "Count",
+          "startAngle": {"signal": "startAngle + 6.29/5*3"},
+          "endAngle": {"signal": "endAngle + 6.29/5*3"},
+          "sort": {"signal": "sort"}
+        }
+      ]
+    },
+    {
+      "name": "table5",
+      "url": "https://raw.githubusercontent.com/sozonokishi/dataset/main/DataAnalystModified_TreeDonut.csv",
+      "format": {"type": "csv", "delimiter": ","},
+      "transform": [
+        {"type": "filter", "expr": "datum.Sector == 'Insurance'"},
+        {
+          "type": "pie",
+          "field": "Count",
+          "startAngle": {"signal": "startAngle + 6.29/5*4"},
+          "endAngle": {"signal": "endAngle + 6.29/5*4"},
+          "sort": {"signal": "sort"}
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {"data": "table_OG", "field": "Industry"},
+      "range": {"scheme": "category10"}
+    },
+    {
+      "name": "yscale",
+      "nice": false,
+      "range": [200, 400],
+      "domain": [0, 600],
+      "reverse": true
+    }
+  ],
+  "axes": [
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "offset": -200,
+      "position": -200,
+      "tickCount": 6
+    }
+  ],
+  "config": {"axisY": {"maxExtext": 20}},
+  "marks": [
+    {
+      "type": "arc",
+      "from": {"data": "table"},
+      "encode": {
+        "enter": {
+          "fill": {"scale": "color", "field": "Industry"},
+          "opacity": {"signal": "opacityValue"},
+          "x": {"signal": "width / 2"},
+          "y": {"signal": "height / 2"},
+          "tooltip": {
+            "signal": "{'Sector': datum.Sector, 'Industry': datum.Industry, 'Job Post': datum.Count}"
+          }
+        },
+        "update": {
+          "startAngle": {"field": "startAngle"},
+          "endAngle": {"field": "endAngle"},
+          "padAngle": {"signal": "padAngle"},
+          "innerRadius": {"signal": "width/600*569/2-5"},
+          "outerRadius": {"signal": "width/600*569/2+5"},
+          "cornerRadius": {"signal": "cornerRadius"}
+        }
+      }
+    },
+    {
+      "type": "arc",
+      "from": {"data": "table2"},
+      "encode": {
+        "enter": {
+          "fill": {"scale": "color", "field": "Industry"},
+          "opacity": {"signal": "opacityValue"},
+          "x": {"signal": "width / 2"},
+          "y": {"signal": "height / 2"},
+          "tooltip": {
+            "signal": "{'Sector': datum.Sector, 'Industry': datum.Industry, 'Job Post': datum.Count}"
+          }
+        },
+        "update": {
+          "startAngle": {"field": "startAngle"},
+          "endAngle": {"field": "endAngle"},
+          "padAngle": {"signal": "padAngle"},
+          "innerRadius": {"signal": "width/600*(521/2-5)"},
+          "outerRadius": {"signal": "width/600*(521/2+5)"},
+          "cornerRadius": {"signal": "cornerRadius"}
+        }
+      }
+    },
+    {
+      "type": "arc",
+      "from": {"data": "table3"},
+      "encode": {
+        "enter": {
+          "fill": {"scale": "color", "field": "Industry"},
+          "opacity": {"signal": "opacityValue"},
+          "x": {"signal": "width / 2"},
+          "y": {"signal": "height / 2"},
+          "tooltip": {
+            "signal": "{'Sector': datum.Sector, 'Industry': datum.Industry, 'Job Post': datum.Count}"
+          }
+        },
+        "update": {
+          "startAngle": {"field": "startAngle"},
+          "endAngle": {"field": "endAngle"},
+          "padAngle": {"signal": "padAngle"},
+          "innerRadius": {"signal": "width/600*(169/2-4)"},
+          "outerRadius": {"signal": "width/600*(169/2+4)"},
+          "cornerRadius": {"signal": "cornerRadius"}
+        }
+      }
+    },
+    {
+      "type": "arc",
+      "from": {"data": "table4"},
+      "encode": {
+        "enter": {
+          "fill": {"scale": "color", "field": "Industry"},
+          "opacity": {"signal": "opacityValue"},
+          "x": {"signal": "width / 2"},
+          "y": {"signal": "height / 2"},
+          "tooltip": {
+            "signal": "{'Sector': datum.Sector, 'Industry': datum.Industry, 'Job Post': datum.Count}"
+          }
+        },
+        "update": {
+          "startAngle": {"field": "startAngle"},
+          "endAngle": {"field": "endAngle"},
+          "padAngle": {"signal": "padAngle"},
+          "innerRadius": {"signal": "width/600*(151/2-4)"},
+          "outerRadius": {"signal": "width/600*(151/2+4)"},
+          "cornerRadius": {"signal": "cornerRadius"}
+        }
+      }
+    },
+    {
+      "type": "arc",
+      "from": {"data": "table5"},
+      "encode": {
+        "enter": {
+          "fill": {"scale": "color", "field": "Industry"},
+          "opacity": {"signal": "opacityValue"},
+          "x": {"signal": "width / 2"},
+          "y": {"signal": "height / 2"},
+          "tooltip": {
+            "signal": "{'Sector': datum.Sector, 'Industry': datum.Industry, 'Job Post': datum.Count}"
+          }
+        },
+        "update": {
+          "startAngle": {"field": "startAngle"},
+          "endAngle": {"field": "endAngle"},
+          "padAngle": {"signal": "padAngle"},
+          "innerRadius": {"signal": "width/600*(51/2-3)"},
+          "outerRadius": {"signal": "width/600*(51/2+3)"},
+          "cornerRadius": {"signal": "cornerRadius"}
+        }
+      }
+    }
+  ]
+}
