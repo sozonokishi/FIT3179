@@ -1,7 +1,7 @@
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
   "description": "A word cloud visualization depicting Vega research paper abstracts.",
-  "width": 1570,
+  "width": 1650,
   "height": 400,
   "padding": 2,
   "data": [
@@ -57,7 +57,7 @@
       "transform": [
         {
           "type": "wordcloud",
-          "size": [1570, 400],
+          "size": [1650, 400],
           "text": {"field": "text"},
           "rotate": {"field": "datum.angle"},
           "fontSize": {"field": "datum.count"},
