@@ -229,7 +229,7 @@
   "rect": {"fill": "#000"},
   "shape": {"stroke": "#000"},
   "symbol": {"fill": "#000", "size": 40},
-  "title":{"fontSize": 20, "fontWeight": "normal", "font": "sans-serif"},
+  "title":{"fontSize": 40, "fontWeight": "normal", "font": "sans-serif"},
   "axis": {
     "domain": false,
     "grid": true,
