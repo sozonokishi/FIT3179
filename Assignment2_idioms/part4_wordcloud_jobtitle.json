@@ -48,7 +48,7 @@
           "baseline": {"value": "alphabetic"},
           "fill": {"scale": "color", "field": "text"},
           "tooltip": {
-            "signal": "{'Word Appearance Count': format(datum.count, 'd')}"
+            "signal": "{'Word Count': format(datum.count, 'd')}"
           }
         },
         "update": {"fillOpacity": {"value": 1}},
