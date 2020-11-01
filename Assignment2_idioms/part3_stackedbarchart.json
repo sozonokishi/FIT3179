@@ -52,7 +52,8 @@
       },
       "encoding": {
         "text": {"field": "sector_count", "type": "quantitative"},
-        "y": {"field": "sector_count", "type": "quantitative"}
+        "y": {"field": "sector_count", "type": "quantitative"},
+        "color": {"value":"#135DA5"}
       }
     }
   ],
