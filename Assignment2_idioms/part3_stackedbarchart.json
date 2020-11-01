@@ -70,8 +70,8 @@
       "tickColor": "#7F7F7F",
       "tickSize": 5.67,
       "titleFontSize": 16,
-      "titleFontWeight": "normal"
+      "titleFontWeight": "normal",
+      "labelFontSize": 13
     },
-    "legend": {"labelBaseline": "middle", "labelFontSize": 15, "symbolSize": 40}
   }
 }
