@@ -19,7 +19,7 @@
       "axis": {"tickCount": 6},
       "title": "Job Posting Count"
     },
-    "x": {"field": "Sector", "axis": {"labelAngle": 0, "labelLimit": 100}},
+    "x": {"field": "Sector", "axis": {"labelAngle": 0, "labelLimit": 80}},
     "order": {"field": "indus_count", "sort": "descending"},
     "color": {
       "field": "indus_count",
@@ -29,6 +29,7 @@
     },
     "tooltip": [
       {"field": "Industry"},
+      {"field": "Sector},
       {"field": "indus_count", "title": "Job Post Count"}
     ]
   },
