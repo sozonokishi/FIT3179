@@ -29,7 +29,7 @@
     },
     "tooltip": [
       {"field": "Industry"},
-      {"field": "Sector},
+      {"field": "Sector"},
       {"field": "indus_count", "title": "Job Post Count"}
     ]
   },
