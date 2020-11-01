@@ -12,21 +12,39 @@
 
     <style>
       body {
-        background-color: white;
+        background-color: grey;
+        
       }
 
       .page {
-        width: auto;
+        background-color: white;
+        width: 1650px;
         height: auto;
-        justify-content: center;
+        margin: auto;
+      }
+
+      .border{
+        padding-left: 40px;
+        padding-right: 40px;
+      }
+      
+      .header{
+        font-size: 30px;
+        color: purple;
+      }
+
+      .main-vis{
+        padding-left: 50px;
+        height: auto;
+        width: auto;
       }
 
       .vertical-paragraph{
-        padding-left: 40px;
-        padding-right: 40px;
         padding-top: 40px;
         padding-bottom: 40px;
+        padding-right: 40px;
         font-size: 22px;
+        color: #1D1E1C;
       }
 
       .horizontal-paragraph{
@@ -35,6 +53,7 @@
         padding-top: 0px;
         padding-bottom: 60px;
         font-size: 22px;
+        color: #1D1E1C;
       }
 
       .good-highlight{
@@ -62,66 +81,106 @@
         color: #A6A6A6;
       }
 
+      .third-place-highlight{
+        color: #B08D57;
+      }
+
     </style>
   </head>
-
-  <header style="text-decoration: underline">
-    <h1>Data Analyst Job Posting from Glassdoor</h1>
-  </header>
-
   <body>
     <div class="page">
-      <div class="pure-g">
-        <div class="pure-u-1-5">
-          <div class="vertical-paragraph">
+      <div class="border">
+        <header class="header">
+          <h1>Data Analyst Job Posting from Glassdoor</h1>
+        </header> 
+
+        <div class="pure-g" style="padding-top:20px">
+          <div class="pure-u-1-5">
+            <div class="vertical-paragraph">
+                <p>
+                The <span class="good-highlight">upper estimate of the salary</span> 
+                is averaged at around <span class="good-highlight">90,000 USD</span>, 
+                while the <span class="bad-highlight">lower end of the estimate</span>
+                is averaged at around <span class="bad-highlight">54,000 USD</span>, if we were to average
+                the 2 opposite end of the salary, we get an <span class="exaggerate-highlight"> average of
+                around 72,000 USD salary</span>. Note that the numbers are 
+                estimates from Glassdoor websites and also that it is
+                a yearly salary.
+                </p>
+                <p> 
+                As the rating increases, the appearance of higher
+                pay salary starts to appear. Most of the highest
+                estimated paid salary from the posting seem to 
+                originate mostly from 4 to 5 points rated job posting.
+                </p>
+            </div>
+          </div>
+          <div class="pure-u-4-5">
+            <div id="bubble" ></div>
+          </div>
+        </div>
+
+        <div class="pure-g">
+          <div class="pure-u-1-5"></div>
+          <div class="pure-u-3-5">
+            <div class="horizontal-paragraph">
               <p>
-              The <span class="good-highlight">upper estimate of the salary</span> 
-              is averaged at around <span class="good-highlight">90,000 USD</span>, 
-              while the <span class="bad-highlight">lower end of the estimate</span>
-              is averaged at around <span class="bad-highlight">54,000 USD</span>, if we were to average
-              the 2 opposite end of the salary, we get an <span class="exaggerate-highlight"> average of
-              around 72,000 USD salary</span>. Note that the numbers are 
-              estimates from Glassdoor websites and also that it is
-              a yearly salary.
+              From the data, it seems that most 5 points rated job posting originates from companies of
+              around the <span class="first-place-highlight">size of 51 to 200</span>, which is around 
+              <span class="first-place-highlight">71%</span> of the 5 points rated job postings, 
+              2nd most comes from companies of the size of <span class="second-place-highlight">1 to 50 employees</span>,
+              which consist of <span class="second-place-highlight">26%</span> of the 5 point rated job posting
+              Further investigation could be made to find out the ages of the companies, which is sadly not included in this analysis.
               </p>
-              <p> 
-              As the rating increases, the appearance of higher
-              pay salary starts to appear. Most of the highest
-              estimated paid salary from the posting seem to 
-              originate mostly from 4 to 5 points rated job posting.
+            </div>
+          </div>
+          <div class="pure-u-1-5"></div>
+        </div>
+
+        <div class="pure-g" style="padding-top:100px;">
+          <div class="pure-u-1-3">
+            <div id="map"></div>
+          </div>
+          <div class="pure-u-2-3">
+            <div class="horizontal-paragraph" style="padding-top: 75px">
+              <p>
+              The datas presented are from a selected few regions from USA. Datas for the rest of the regions are not available in this presentation.
+              Without normalising, the data sample that are used for the visualisation comes mainly from <span style="color: #1059A2;">California</span>, with employee size of the company
+              ranges mainly from <span style="font-size: 16px; font-weight: bolder; color: #1059A2">50 to 200 employees</span>, coincidently, that is where Silicon Valley is situate in.
               </p>
+            </div>
           </div>
         </div>
-        <div class="pure-u-4-5">
-          <div id="bubble" class="vis-grid" style=></div>
-        </div>
-      </div>
 
-      <div class="pure-g">
-        <div class="pure-u-1-5"></div>
-        <div class="pure-u-3-5">
-          <div class="horizontal-paragraph">
-            <p>
-            From the data, it seems that most 5 points rated job posting originates from companies of
-            around the <span class="first-place-highlight">size of 51 to 200</span>, which is around 
-            <span class="first-place-highlight">71%</span> of the 5 points rated job postings, 
-            2nd most comes from companies of the size of <span class="second-place-highlight">1 to 50 employees</span>,
-            which consist of <span class="second-place-highlight">26%</span> of the 5 point rated job posting
-            Further investigation could be made to find out the ages of the companies, which is sadly not included in this analysis.
-            </p>
+        <div class="pure-g" style="padding-top: 100px">
+          <div class="pure-u-3-5">
+            <div class="horizontal-paragraph" style="padding-top: 75px">
+              <p>
+              Using the data samples, the top sectors that are in need of data analyst are from the <span class="first-place-highlight">Information Technology sector and Business Services</span>
+              sectors, both posting more than 500 jobs available for data analyst, totalling over <span class="first-place-highlight">57%</span> of the total job posting based on the data sample.
+              Next comes the <span class="second-place-highlight">Finance and Healthcare sectors</span>, both posting 100 to 200 job posts each, which when totalled up, constitute to around 
+              <span class="second-place-highlight">17%</span> of the total job posting from the data sample. Lastly comes the <span class="third-place-highlight" style="font-weight: bold;">Insurance</span> sector,  with a job post 
+              of 51 from the data sample. The <span style="font-weight: bold;">rest of the sectors total up to around 23%</span> of the job posting from the data sample, which matches up to the top 2 sectors for job posting.
+              </p>
+            </div>
+          </div>
+          <div class="pure-u-2-5">
+            <div id="bar"></div>
           </div>
         </div>
-        <div class="pure-u-1-5"></div>
+
       </div>
 
+      
+      <div class="pure-g" style="padding-top: 100px;">
+        <div class="pure-u-1">
+          <p style="font-size:20px;color:grey;padding-left: 40px;">
+          And at last we have word cloud for the data analyst job title.
+          </p>
+        </div>
+      </div>
       <div class="pure-g">
-        <div class="pure-u-1-3">
-          <div id="map"></div>
-        </div>
-        <div class="pure-u-1-3">
-          <div id="pie"></div>
-        </div>
-        <div class="pure-u-1-3">
+        <div class="pure-u-1">
           <div id="word"></div>
         </div>
       </div>
@@ -138,8 +197,8 @@
         // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
       }).catch(console.error);
 
-      var spec3 = "https://raw.githubusercontent.com/sozonokishi/FIT3179/main/Assignment2_idioms/part3_piechart_top5sector_industry.json";
-      vegaEmbed('#pie', spec3).then(function(result) {
+      var spec3 = "https://raw.githubusercontent.com/sozonokishi/FIT3179/main/Assignment2_idioms/part3_stackedbarchart.json";
+      vegaEmbed('#bar', spec3).then(function(result) {
         // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
       }).catch(console.error);
 
