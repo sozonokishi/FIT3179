@@ -29,31 +29,7 @@
       "mark": {
         "type": "geoshape",
         "color": "#F1F3C7",
-        "stroke": "white",
         "opacity": 0.4
-      },
-      "encoding": {
-        "tooltip": [
-          {"field": "properties.name", "type": "nominal", "title": "State"},
-          {"field": "Job Count", "type": "quantitative", "title": "Job Count"},
-          {
-            "field": "Low Salary Est Avg",
-            "type": "quantitative",
-            "title": "Lowest Average Estimated Salary",
-            "format": ".0f"
-          },
-          {
-            "field": "High Salary Est Avg",
-            "type": "quantitative",
-            "title": "Highest Average Estimated Salary",
-            "format": ".0f"
-          },
-          {
-            "field": "Company Size Mode",
-            "type": "nominal",
-            "title": "Mode of Company Size"
-          }
-        ]
       }
     },
     {
@@ -90,5 +66,29 @@
         ]
       }
     }
-  ]
+  ],
+  "config": {
+  "group": {"fill": "#e5e5e5"},
+  "arc": {"fill": "#000"},
+  "area": {"fill": "#000"},
+  "line": {"stroke": "#000"},
+  "path": {"stroke": "#000"},
+  "rect": {"fill": "#000"},
+  "shape": {"stroke": "#000"},
+  "symbol": {"fill": "#000", "size": 40},
+  "title":{"fontSize": 25, "fontWeight": "normal", "font": "sans-serif"},
+  "axis": {
+    "domain": false,
+    "grid": true,
+    "gridColor": "#FFFFFF",
+    "gridOpacity": 1,
+    "labelColor": "#7F7F7F",
+    "labelPadding": 4,
+    "tickColor": "#7F7F7F",
+    "tickSize": 5.67,
+    "titleFontSize": 16,
+    "titleFontWeight": "normal",
+    "labelFontSize": 13
+  }
+}
 }
